@@ -19,11 +19,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name:  Fetch ALL repositories with pagination
+      - name: Fetch ALL repositories with pagination
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo " Fetching ALL repositories for Mouadbouanani..."
+          echo "Fetching ALL repositories for Mouadbouanani..."
           
           # Initialize empty array
           echo '[]' > temp_repos.json
@@ -50,7 +50,7 @@ jobs:
           
             # Count repos in this page
             page_count=$(echo "$response" | jq 'length')
-            echo " Found $page_count repositories on page $page"
+            echo "Found $page_count repositories on page $page"
           
             # If no repos on this page, we're done
             if [ "$page_count" -eq 0 ]; then
@@ -84,9 +84,9 @@ jobs:
             sleep 1
           done
           
-          echo " Total repositories fetched: $total_repos"
+          echo "Total repositories fetched: $total_repos"
           
-          # Format ALL repositories (REMOVED PORTFOLIO FILTER)
+          # Format ALL repositories (FIXED jq syntax)
           jq '[.[] | {
             id: .id,
             name: .name,
@@ -96,7 +96,7 @@ jobs:
             language: (if .language == null then "Not specified" else .language end),
             stargazers_count: .stargazers_count,
             forks_count: .forks_count,
-            topics: .topics // [],
+            topics: (if .topics == null then [] else .topics end),
             created_at: .created_at,
             updated_at: .updated_at,
             fork: .fork
@@ -110,7 +110,7 @@ jobs:
           echo " Found $PROJECT_COUNT total repositories"
           
           echo " All repositories included:"
-          jq -r '.[] | "  - \(.name) (\(.language // "No language")) - \(.description)"' public/projects.json
+          jq -r '.[] | "  - \(.name) (\(.language)) - \(.description)"' public/projects.json
 
       - name:  Commit and push changes
         run: |
@@ -119,18 +119,18 @@ jobs:
           git add public/projects.json
           
           if git diff --staged --quiet; then
-            echo "️  No changes to commit"
+            echo "ℹ  No changes to commit"
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
             PROJECT_COUNT=$(jq 'length' public/projects.json)
-            git commit -m " Update all repositories ($PROJECT_COUNT repos) - $TIMESTAMP"
+            git commit -m "Update all repositories ($PROJECT_COUNT repos) - $TIMESTAMP"
             git push
             echo " Changes pushed successfully"
           fi
 
       - name:  Summary
         run: |
-          echo "###  Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Total Repositories:** $(jq 'length' public/projects.json)" >> $GITHUB_STEP_SUMMARY
           echo "- **Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
