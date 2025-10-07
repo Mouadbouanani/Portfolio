@@ -90,10 +90,10 @@ jobs:
           jq '[.[] | {
             id: .id,
             name: .name,
-            description: .description // "No description provided",
+            description: (if .description == null then "No description provided" else .description end),
             html_url: .html_url,
             homepage: .homepage,
-            language: .language // "Not specified",
+            language: (if .language == null then "Not specified" else .language end),
             stargazers_count: .stargazers_count,
             forks_count: .forks_count,
             topics: .topics // [],
