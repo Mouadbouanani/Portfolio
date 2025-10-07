@@ -3,9 +3,9 @@ name: Update Portfolio Projects
 on:
   schedule:
     - cron: '0 2 * * *'  # Daily at 2 AM UTC
-  workflow_dispatch:      # Manual trigger
+  workflow_dispatch:      # Manual trigger button
   push:
-    branches: [main]      # Trigger on push to main
+    branches: [main]      # Run on push to main
 
 jobs:
   update-projects:
@@ -19,47 +19,98 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name:  Fetch portfolio repositories
+      - name:  Fetch ALL repositories with pagination
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo " Fetching repositories for Mouadbouanani..."
+          echo " Fetching ALL repositories for Mouadbouanani..."
           
-          # Fetch repos with topics support
-          curl -s \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.mercy-preview+json" \
-            "https://api.github.com/users/Mouadbouanani/repos?per_page=100&type=owner&sort=updated" \
-            | jq '[
-              .[] | 
-              select(.topics | index("portfolio")) | 
-              {
-                id: .id,
-                name: .name,
-                description: (if .description then .description else "No description provided" end),
-                html_url: .html_url,
-                homepage: .homepage,
-                language: (if .language then .language else "Not specified" end),
-                stargazers_count: .stargazers_count,
-                forks_count: .forks_count,
-                topics: .topics,
-                created_at: .created_at,
-                updated_at: .updated_at,
-                fork: .fork
-              }
-            ] | sort_by(.updated_at) | reverse' > public/projects.json
+          # Initialize empty array
+          echo '[]' > temp_repos.json
+          
+          # Fetch all pages of repositories
+          page=1
+          per_page=100
+          total_repos=0
+          
+          while true; do
+            echo " Fetching page $page..."
+          
+            # Fetch current page
+            response=$(curl -s \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.mercy-preview+json" \
+              "https://api.github.com/users/Mouadbouanani/repos?per_page=$per_page&page=$page&type=owner&sort=updated")
+          
+            # Check if response is valid JSON and not empty
+            if ! echo "$response" | jq empty 2>/dev/null; then
+              echo " Invalid JSON response on page $page"
+              break
+            fi
+          
+            # Count repos in this page
+            page_count=$(echo "$response" | jq 'length')
+            echo " Found $page_count repositories on page $page"
+          
+            # If no repos on this page, we're done
+            if [ "$page_count" -eq 0 ]; then
+              echo " No more repositories found. Pagination complete."
+              break
+            fi
+          
+            # Add to total count
+            total_repos=$((total_repos + page_count))
+          
+            # Merge with existing results
+            jq --argjson new_repos "$response" '. += $new_repos' temp_repos.json > temp_merged.json
+            mv temp_merged.json temp_repos.json
+          
+            # If we got less than per_page, we're on the last page
+            if [ "$page_count" -lt "$per_page" ]; then
+              echo " Last page reached. Pagination complete."
+              break
+            fi
+          
+            # Increment page number
+            page=$((page + 1))
+          
+            # Safety check to prevent infinite loops
+            if [ "$page" -gt 100 ]; then
+              echo "⚠ Safety limit reached (100 pages). Stopping."
+              break
+            fi
+          
+            # Rate limiting delay
+            sleep 1
+          done
+          
+          echo " Total repositories fetched: $total_repos"
+          
+          # Format ALL repositories (REMOVED PORTFOLIO FILTER)
+          jq '[.[] | {
+            id: .id,
+            name: .name,
+            description: .description // "No description provided",
+            html_url: .html_url,
+            homepage: .homepage,
+            language: .language // "Not specified",
+            stargazers_count: .stargazers_count,
+            forks_count: .forks_count,
+            topics: .topics // [],
+            created_at: .created_at,
+            updated_at: .updated_at,
+            fork: .fork
+          }] | sort_by(.updated_at) | reverse' temp_repos.json > public/projects.json
+          
+          # Clean up
+          rm temp_repos.json
           
           # Show results
           PROJECT_COUNT=$(jq 'length' public/projects.json)
-          echo " Found $PROJECT_COUNT portfolio projects"
+          echo " Found $PROJECT_COUNT total repositories"
           
-          if [ "$PROJECT_COUNT" -eq 0 ]; then
-            echo "⚠  No repositories found with 'portfolio' topic"
-            echo " Add 'portfolio' topic to your repos in GitHub"
-          else
-            echo " Projects included:"
-            jq -r '.[] | "  - \(.name) (\(.language))"' public/projects.json
-          fi
+          echo " All repositories included:"
+          jq -r '.[] | "  - \(.name) (\(.language // "No language")) - \(.description)"' public/projects.json
 
       - name:  Commit and push changes
         run: |
@@ -68,26 +119,21 @@ jobs:
           git add public/projects.json
           
           if git diff --staged --quiet; then
-            echo "ℹ  No changes to commit"
+            echo "️  No changes to commit"
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
             PROJECT_COUNT=$(jq 'length' public/projects.json)
-            git commit -m " Update portfolio projects ($PROJECT_COUNT projects) - $TIMESTAMP"
+            git commit -m " Update all repositories ($PROJECT_COUNT repos) - $TIMESTAMP"
             git push
             echo " Changes pushed successfully"
           fi
 
       - name:  Summary
-        if: success()
         run: |
           echo "###  Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total Projects:** $(jq 'length' public/projects.json)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Repositories:** $(jq 'length' public/projects.json)" >> $GITHUB_STEP_SUMMARY
           echo "- **Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "#### Projects:" >> $GITHUB_STEP_SUMMARY
-          if [ $(jq 'length' public/projects.json) -gt 0 ]; then
-            jq -r '.[] | "- [\(.name)](\(.html_url)) - \(.description)"' public/projects.json >> $GITHUB_STEP_SUMMARY
-          else
-            echo "No projects found. Add the 'portfolio' topic to your repositories." >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "#### All Repositories:" >> $GITHUB_STEP_SUMMARY
+          jq -r '.[] | "- [\(.name)](\(.html_url)) - \(.description)"' public/projects.json >> $GITHUB_STEP_SUMMARY
