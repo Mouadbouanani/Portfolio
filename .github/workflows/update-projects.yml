@@ -3,9 +3,9 @@ name: Update Portfolio Projects
 on:
   schedule:
     - cron: '0 2 * * *'  # Daily at 2 AM UTC
-  workflow_dispatch:      # Manual trigger button
+  workflow_dispatch:      # Manual trigger
   push:
-    branches: [main]      # Run on push to main
+    branches: [main]      # Trigger on push to main
 
 jobs:
   update-projects:
@@ -23,57 +23,62 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "🔍 Fetching repositories for Mouadbouanani..."
+          echo " Fetching repositories for Mouadbouanani..."
           
           # Fetch repos with topics support
           curl -s \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.mercy-preview+json" \
             "https://api.github.com/users/Mouadbouanani/repos?per_page=100&type=owner&sort=updated" \
-            | jq '[.[] | select(.topics | index("portfolio")) | {
+            | jq '[
+              .[] | 
+              select(.topics | index("portfolio")) | 
+              {
                 id: .id,
                 name: .name,
-                description: .description // "No description provided",
+                description: (if .description then .description else "No description provided" end),
                 html_url: .html_url,
                 homepage: .homepage,
-                language: .language // "Not specified",
+                language: (if .language then .language else "Not specified" end),
                 stargazers_count: .stargazers_count,
                 forks_count: .forks_count,
                 topics: .topics,
                 created_at: .created_at,
                 updated_at: .updated_at,
                 fork: .fork
-              }] | sort_by(.updated_at) | reverse' > public/projects.json
+              }
+            ] | sort_by(.updated_at) | reverse' > public/projects.json
           
           # Show results
           PROJECT_COUNT=$(jq 'length' public/projects.json)
-          echo "✅ Found $PROJECT_COUNT portfolio projects"
+          echo " Found $PROJECT_COUNT portfolio projects"
           
           if [ "$PROJECT_COUNT" -eq 0 ]; then
-            echo "⚠️  No repositories found with 'portfolio' topic"
-            echo "💡 Add 'portfolio' topic to your repos in GitHub"
+            echo "⚠  No repositories found with 'portfolio' topic"
+            echo " Add 'portfolio' topic to your repos in GitHub"
           else
-            echo "📋 Projects included:"
+            echo " Projects included:"
             jq -r '.[] | "  - \(.name) (\(.language))"' public/projects.json
           fi
 
-      - name: 💾 Commit and push changes
+      - name:  Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/projects.json
           
           if git diff --staged --quiet; then
-            echo "ℹ️  No changes to commit"
+            echo "ℹ  No changes to commit"
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
             PROJECT_COUNT=$(jq 'length' public/projects.json)
             git commit -m "🤖 Update portfolio projects ($PROJECT_COUNT projects) - $TIMESTAMP"
             git push
-            echo "✅ Changes pushed successfully"
+            echo " Changes pushed successfully"
           fi
 
-      - name: 📊 Summary
+      - name:  Summary
+        if: success()
         run: |
           echo "### 📊 Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -81,4 +86,8 @@ jobs:
           echo "- **Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "#### Projects:" >> $GITHUB_STEP_SUMMARY
-          jq -r '.[] | "- [\(.name)](\(.html_url)) - \(.description)"' public/projects.json >> $GITHUB_STEP_SUMMARY
+          if [ $(jq 'length' public/projects.json) -gt 0 ]; then
+            jq -r '.[] | "- [\(.name)](\(.html_url)) - \(.description)"' public/projects.json >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No projects found. Add the 'portfolio' topic to your repositories." >> $GITHUB_STEP_SUMMARY
+          fi
