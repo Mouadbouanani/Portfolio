@@ -14,12 +14,12 @@ jobs:
       contents: write      # Allow committing changes
 
     steps:
-      - name: 📥 Checkout repository
+      - name:  Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📦 Fetch portfolio repositories
+      - name:  Fetch portfolio repositories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -72,7 +72,7 @@ jobs:
           else
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
             PROJECT_COUNT=$(jq 'length' public/projects.json)
-            git commit -m "🤖 Update portfolio projects ($PROJECT_COUNT projects) - $TIMESTAMP"
+            git commit -m " Update portfolio projects ($PROJECT_COUNT projects) - $TIMESTAMP"
             git push
             echo " Changes pushed successfully"
           fi
@@ -80,7 +80,7 @@ jobs:
       - name:  Summary
         if: success()
         run: |
-          echo "### 📊 Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "###  Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Total Projects:** $(jq 'length' public/projects.json)" >> $GITHUB_STEP_SUMMARY
           echo "- **Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
