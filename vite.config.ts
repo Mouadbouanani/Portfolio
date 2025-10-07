@@ -7,4 +7,5 @@ export default defineConfig({
   css: {
     postcss: './',
   },
+  base: '/portfolio/', //  name of your GitHub repo
 })
