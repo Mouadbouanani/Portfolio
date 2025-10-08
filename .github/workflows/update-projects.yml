@@ -1,19 +1,23 @@
-name:  Update Portfolio Projects
+name: Update Portfolio Projects
 
 on:
   workflow_dispatch: # allows manual trigger
+  push:
+    branches: [main] # trigger on push to main
   schedule:
     - cron: '0 0 * * 0' # runs weekly (Sunday midnight)
 
 jobs:
   update-projects:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # required for pushing changes
 
     steps:
       - name:  Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙ Setup Node
+      - name:  Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -21,18 +25,22 @@ jobs:
       - name:  Install jq
         run: sudo apt-get install -y jq
 
-      - name:  Fetch and update projects.json
+      - name: Fetch and update projects.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Fetching ALL repositories for Mouadbouanani..."
+          echo " Fetching ALL repositories for Mouadbouanani..."
+          
+          # Initialize empty array
           echo '[]' > temp_repos.json
+          
           page=1
           per_page=100
           total_repos=0
 
           while true; do
             echo " Fetching page $page..."
+          
             response=$(curl -s \
               -H "Authorization: token $GITHUB_TOKEN" \
               -H "Accept: application/vnd.github.mercy-preview+json" \
@@ -44,7 +52,7 @@ jobs:
             fi
 
             page_count=$(echo "$response" | jq 'length')
-            echo "Found $page_count repositories on page $page"
+            echo " Found $page_count repositories on page $page"
 
             if [ "$page_count" -eq 0 ]; then
               echo " No more repositories found. Pagination complete."
@@ -56,18 +64,23 @@ jobs:
             mv temp_merged.json temp_repos.json
 
             if [ "$page_count" -lt "$per_page" ]; then
-              echo " Last page reached. Pagination complete."
+              echo "Last page reached. Pagination complete."
               break
             fi
 
             page=$((page + 1))
-            [ "$page" -gt 100 ] && echo "⚠ Safety limit reached (100 pages). Stopping." && break
+          
+            if [ "$page" -gt 100 ]; then
+              echo "⚠ Safety limit reached (100 pages). Stopping."
+              break
+            fi
+          
             sleep 1
           done
 
           echo "Total repositories fetched: $total_repos"
 
-          #  Ensure public directory exists
+          #  CRITICAL: Ensure public directory exists
           mkdir -p public
 
           # Format ALL repositories
@@ -89,14 +102,22 @@ jobs:
           rm temp_repos.json
 
           PROJECT_COUNT=$(jq 'length' public/projects.json)
-          echo " Found $PROJECT_COUNT total repositories"
+          echo " Successfully created public/projects.json with $PROJECT_COUNT repositories"
+          echo ""
+          echo " Repositories included:"
           jq -r '.[] | "  - \(.name) (\(.language)) - \(.description)"' public/projects.json
 
       - name:  Commit and push updated projects.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add public/projects.json
-          git commit -m "Update projects.json [skip ci]" || echo "No changes to commit"
-          git commit -m "Update projects.json [skip ci]" || echo "No changes to commit"
-          git push
+          
+          if git diff --staged --quiet; then
+            echo " No changes to commit"
+          else
+            git commit -m " Update projects.json with latest repositories [skip ci]"
+            git push
+            echo " Changes committed and pushed"
+          fi
