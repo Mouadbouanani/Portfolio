@@ -1,10 +1,14 @@
 const axios = require('axios');
 const fs = require('fs');
+const path = require('path');
 
 const GITHUB_USERNAME = 'Mouadbouanani';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const PORTFOLIO_TOPIC = 'portfolio';
-const OUTPUT_PATH = 'public/projects.json';
+
+// const OUTPUT_PATH = `${import.meta.env.BASE_URL}public/projects.json`;
+const OUTPUT_PATH = path.join(__dirname, 'public', 'projects.json');
+
 
 const getProjects = async () => {
   try {
