@@ -122,7 +122,7 @@ const Projects = () => {
                   <li>5. Refresh this page</li>
                 </ol>
                 <a
-                    href={`https://github.com/${GITHUB_CONFIG.USERNAME}/${GITHUB_CONFIG.USERNAME}.github.io/actions`}
+                    href={`https://github.com/${GITHUB_CONFIG.USERNAME}/Portfolio.github.io/actions`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors"
