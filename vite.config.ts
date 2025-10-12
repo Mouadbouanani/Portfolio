@@ -16,9 +16,9 @@ export default defineConfig({
 
         if (fs.existsSync(source)) {
           fs.copyFileSync(source, dest);
-          console.log('✅ Copied projects.json to dist folder');
+          console.log(' Copied projects.json to dist folder');
         } else {
-          console.warn('⚠️ public/projects.json not found - create empty array');
+          console.warn('⚠ public/projects.json not found - create empty array');
           fs.writeFileSync(dest, '[]');
         }
       }
