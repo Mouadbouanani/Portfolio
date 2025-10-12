@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import Footer from "./components/footer";
 
 function App() {
     const [darkMode, setDarkMode] = useState(true);
@@ -42,6 +43,8 @@ function App() {
                 <Contact />
             </main>
             <ScrollToTopButton />
+            <Footer />
+
         </div>
     );
 }
