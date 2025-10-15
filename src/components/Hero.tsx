@@ -9,8 +9,7 @@ const Hero = () => {
     const titles = [
         "Software Engineer",
         "Full-Stack Developer",
-        "MERN Stack Developer",
-        "Cloud Solutions Architect"
+        "MERN Stack Developer"
     ];
 
     const name = "Mouad EL BOUANANI";
