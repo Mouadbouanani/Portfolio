@@ -24,7 +24,7 @@ export default defineConfig({
       }
     }
   ],
-  base: '/Portfolio/',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
