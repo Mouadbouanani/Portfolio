@@ -65,13 +65,6 @@ const projects = [
     type: 'Academic Project'
   },
   {
-    title: 'Chatbot Development',
-    subtitle: 'NLP Project',
-    description: 'Created a rule-based chatbot using Python with NLTK library for Natural Language Processing.',
-    technologies: ['Python', 'NLTK', 'NLP'],
-    type: 'Academic Project'
-  },
-  {
     title: 'E-commerce Website',
     subtitle: 'Full-Stack Application (Personal)',
     description: 'Developed an e-commerce site with user role management (Customer, Supplier, Administrator), product management, cart, orders, and payment tracking.',

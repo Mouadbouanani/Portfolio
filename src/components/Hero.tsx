@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Download, Code, Database, Cloud } from 'lucide-react';
+import { Github, Linkedin, Mail, Download } from 'lucide-react';
 
 const Hero = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -196,43 +196,43 @@ const Hero = () => {
                     </motion.p>
                 </motion.div>
 
-                <motion.div
-                    className="flex justify-center space-x-8 mb-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5, duration: 0.8 }}
-                >
-                    {[Code, Database, Cloud].map((Icon, index) => (
-                        <motion.div
-                            key={index}
-                            className="p-4 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20"
-                            whileHover={{
-                                scale: 1.2,
-                                rotate: 360,
-                                backgroundColor: 'rgba(20, 184, 166, 0.2)'
-                            }}
-                            whileTap={{ scale: 0.9 }}
-                            animate={{
-                                y: [0, -10, 0],
-                            }}
-                            transition={{
-                                y: {
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    delay: index * 0.3
-                                }
-                            }}
-                        >
-                            <Icon className="w-8 h-8 text-white" />
-                        </motion.div>
-                    ))}
-                </motion.div>
+                {/*<motion.div*/}
+                {/*    className="flex justify-center space-x-8 mb-12"*/}
+                {/*    initial={{ opacity: 0, y: 30 }}*/}
+                {/*    animate={{ opacity: 1, y: 0 }}*/}
+                {/*    transition={{ delay: 1.5, duration: 0.8 }}*/}
+                {/*>*/}
+                {/*    {[Code, Database, Cloud].map((Icon, index) => (*/}
+                {/*        <motion.div*/}
+                {/*            key={index}*/}
+                {/*            className="p-4 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20"*/}
+                {/*            whileHover={{*/}
+                {/*                scale: 1.2,*/}
+                {/*                rotate: 360,*/}
+                {/*                backgroundColor: 'rgba(20, 184, 166, 0.2)'*/}
+                {/*            }}*/}
+                {/*            whileTap={{ scale: 0.9 }}*/}
+                {/*            animate={{*/}
+                {/*                y: [0, -10, 0],*/}
+                {/*            }}*/}
+                {/*            transition={{*/}
+                {/*                y: {*/}
+                {/*                    duration: 2,*/}
+                {/*                    repeat: Infinity,*/}
+                {/*                    delay: index * 0.3*/}
+                {/*                }*/}
+                {/*            }}*/}
+                {/*        >*/}
+                {/*            <Icon className="w-8 h-8 text-white" />*/}
+                {/*        </motion.div>*/}
+                {/*    ))}*/}
+                {/*</motion.div>*/}
 
                 <motion.div
                     className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2, duration: 0.8 }}
+                    initial={{opacity: 0, y: 30}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{delay: 2, duration: 0.8}}
                 >
                     <motion.a
                         href="#projects"
@@ -241,14 +241,14 @@ const Hero = () => {
                             scale: 1.05,
                             boxShadow: '0 20px 40px rgba(20, 184, 166, 0.3)'
                         }}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{scale: 0.95}}
                     >
                         <span className="relative z-10 font-semibold">View My Work</span>
                         <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-secondary to-primary"
-                            initial={{ x: '-100%' }}
-                            whileHover={{ x: 0 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{x: '-100%'}}
+                            whileHover={{x: 0}}
+                            transition={{duration: 0.3}}
                         />
                     </motion.a>
 
@@ -257,39 +257,40 @@ const Hero = () => {
                         className="group px-8 py-4 border-2 border-white text-white rounded-full backdrop-blur-sm bg-white bg-opacity-10 hover:bg-white hover:text-slate-900 transition-all duration-300 shadow-lg"
                         whileHover={{
                             scale: 1.05,
-                            borderColor: '#14B8A6',
-                            color: '#0F172A'
+                            borderColor: '#1ab6a5',
+                            color: '#142140'
                         }}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{scale: 0.95}}
                     >
                         <span className="font-semibold">Get In Touch</span>
                     </motion.a>
 
                     <motion.a
-                        href="./assets/EL_BOUANANI_Mouad_En.pdf"
+                        href="/Portfolio/CV_Mouad_El_Bouanani.pdf"
                         target="_blank"
                         download
                         className="group px-8 py-4 bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-30 text-white rounded-full hover:bg-secondary hover:border-secondary transition-all duration-300 shadow-lg flex items-center space-x-2"
                         whileHover={{
                             scale: 1.05,
-                            backgroundColor: 'rgba(20, 184, 166, 0.8)'
+                            backgroundColor: 'rgba(20,140,184,0.8)',
                         }}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{scale: 0.95}}
                     >
-                        <Download className="w-5 h-5" />
-                        <span className="font-semibold">Download CV</span>
+                        <Download className="w-5 h-5"/>
+                        <span>Download CV</span>
                     </motion.a>
+
                 </motion.div>
 
                 <motion.div
                     className="flex justify-center space-x-8"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2.5, duration: 0.8 }}
+                    initial={{opacity: 0, y: 30}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{delay: 2.5, duration: 0.8}}
                 >
                     {[
-                        { Icon: Github, href: "https://github.com/Mouadbouanani", label: "GitHub" },
-                        { Icon: Linkedin, href: "https://linkedin.com/in/mouad-el-bouanani", label: "LinkedIn" },
+                        {Icon: Github, href: "https://github.com/Mouadbouanani", label: "GitHub"},
+                        {Icon: Linkedin, href: "https://linkedin.com/in/mouad-el-bouanani", label: "LinkedIn" },
                         { Icon: Mail, href: "mailto:mouad.el-bouanani@esi.ac.ma", label: "Email" }
                     ].map(({ Icon, href, label }, index) => (
                         <motion.a
