@@ -1,5 +1,22 @@
 [
   {
+    "id": 1071785782,
+    "name": "Portfolio",
+    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
+    "html_url": "https://github.com/Mouadbouanani/Portfolio",
+    "homepage": "https://mouadbouanani.github.io/Portfolio/",
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "topics": [
+      "portfolio",
+      "reactjs"
+    ],
+    "created_at": "2025-10-07T20:08:52Z",
+    "updated_at": "2025-12-18T03:17:25Z",
+    "fork": false
+  },
+  {
     "id": 1103389015,
     "name": "SkillMatching",
     "description": " SkillMatching is a modern, full-stack application designed to connect skilled professionals with relevant job   opportunities. It leverages a microservices-based backend and a cross-platform mobile application to deliver a   scalable and responsive user experie",
@@ -20,23 +37,6 @@
     ],
     "created_at": "2025-11-24T20:05:25Z",
     "updated_at": "2025-12-17T14:51:04Z",
-    "fork": false
-  },
-  {
-    "id": 1071785782,
-    "name": "Portfolio",
-    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
-    "html_url": "https://github.com/Mouadbouanani/Portfolio",
-    "homepage": "https://mouadbouanani.github.io/Portfolio/",
-    "language": "TypeScript",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "portfolio",
-      "reactjs"
-    ],
-    "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2025-12-17T03:16:35Z",
     "fork": false
   },
   {
