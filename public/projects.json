@@ -1,19 +1,171 @@
 [
   {
-    "id": 1071785782,
-    "name": "Portfolio",
-    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
-    "html_url": "https://github.com/Mouadbouanani/Portfolio",
-    "homepage": "https://mouadbouanani.github.io/Portfolio/",
-    "language": "TypeScript",
-    "stargazers_count": 0,
+    "id": 740613856,
+    "name": "Taquin-Game",
+    "description": "No description provided",
+    "html_url": "https://github.com/Mouadbouanani/Taquin-Game",
+    "homepage": "",
+    "language": "C",
+    "stargazers_count": 1,
     "forks_count": 0,
     "topics": [
-      "portfolio",
-      "reactjs"
+      "c",
+      "sdl2"
     ],
-    "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2025-12-20T03:11:47Z",
+    "created_at": "2024-01-08T17:47:54Z",
+    "updated_at": "2025-12-21T17:14:53Z",
+    "fork": false
+  },
+  {
+    "id": 864288973,
+    "name": "JCMP-ESI",
+    "description": "website to present JCMP-ESI club to the world and discover their activities and engagement in the society",
+    "html_url": "https://github.com/Mouadbouanani/JCMP-ESI",
+    "homepage": null,
+    "language": "Not specified",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [],
+    "created_at": "2024-09-27T21:32:41Z",
+    "updated_at": "2025-12-21T17:14:52Z",
+    "fork": true
+  },
+  {
+    "id": 964808118,
+    "name": "e-ecommerce",
+    "description": "This is a full-stack e-commerce website developed using Spring Boot for the backend and Angular for the frontend. The system is designed to handle multiple user roles, including Client, Supplier, and Administrator, each with tailored access and functionalities.",
+    "html_url": "https://github.com/Mouadbouanani/e-ecommerce",
+    "homepage": "",
+    "language": "Java",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "angular",
+      "java",
+      "spring-boot"
+    ],
+    "created_at": "2025-04-11T20:26:32Z",
+    "updated_at": "2025-12-21T17:14:49Z",
+    "fork": false
+  },
+  {
+    "id": 972112397,
+    "name": "Gestion-Patisserie",
+    "description": "Gestion Patisserie is a JavaFX-based application designed to help bakeries and pastry shops manage their inventory, orders, clients, and employees.",
+    "html_url": "https://github.com/Mouadbouanani/Gestion-Patisserie",
+    "homepage": "",
+    "language": "Java",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "java",
+      "javafx",
+      "spring-boot"
+    ],
+    "created_at": "2025-04-24T14:54:06Z",
+    "updated_at": "2025-12-21T17:14:48Z",
+    "fork": false
+  },
+  {
+    "id": 968833517,
+    "name": "Employee-Management-System",
+    "description": "Le Système de Gestion des Employés est une application web destinée à gérer les données des employés via des opérations CRUD complètes. Elle repose sur le framework Spring Boot et suit une architecture en trois couches.",
+    "html_url": "https://github.com/Mouadbouanani/Employee-Management-System",
+    "homepage": "",
+    "language": "HTML",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "bootstrap5",
+      "java",
+      "spring-boot"
+    ],
+    "created_at": "2025-04-18T20:24:48Z",
+    "updated_at": "2025-12-21T17:14:47Z",
+    "fork": false
+  },
+  {
+    "id": 983712143,
+    "name": "taawoniyat",
+    "description": "Taawoniyate est une plateforme web et mobile permettant la vente et l'achat de produits naturels, mettant en relation plusieurs vendeurs et clients",
+    "html_url": "https://github.com/Mouadbouanani/taawoniyat",
+    "homepage": "",
+    "language": "TypeScript",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "api",
+      "react-native",
+      "spring-boot"
+    ],
+    "created_at": "2025-05-14T19:52:27Z",
+    "updated_at": "2025-12-21T17:14:45Z",
+    "fork": false
+  },
+  {
+    "id": 1079477053,
+    "name": "Mouadbouanani.github.io",
+    "description": "No description provided",
+    "html_url": "https://github.com/Mouadbouanani/Mouadbouanani.github.io",
+    "homepage": null,
+    "language": "Not specified",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [],
+    "created_at": "2025-10-19T22:00:51Z",
+    "updated_at": "2025-12-21T17:14:44Z",
+    "fork": false
+  },
+  {
+    "id": 1069869299,
+    "name": "Mouadbouanani",
+    "description": "README Profile",
+    "html_url": "https://github.com/Mouadbouanani/Mouadbouanani",
+    "homepage": "",
+    "language": "Not specified",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "readme-profile"
+    ],
+    "created_at": "2025-10-04T19:30:30Z",
+    "updated_at": "2025-12-21T17:14:43Z",
+    "fork": false
+  },
+  {
+    "id": 1084193492,
+    "name": "Westher-O2-app",
+    "description": "The Weather O2 application follows a well-designed microservices architecture with a clear separation of concerns",
+    "html_url": "https://github.com/Mouadbouanani/Westher-O2-app",
+    "homepage": null,
+    "language": "Not specified",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [],
+    "created_at": "2025-10-27T10:57:33Z",
+    "updated_at": "2025-12-21T17:14:42Z",
+    "fork": false
+  },
+  {
+    "id": 1022729255,
+    "name": "Gestion_Astreinte",
+    "description": "Developed a web application for managing weekend/holiday on-call duties using MERN stack with Docker deployment, automatic escalation system, and JWT authentication.",
+    "html_url": "https://github.com/Mouadbouanani/Gestion_Astreinte",
+    "homepage": "",
+    "language": "Not specified",
+    "stargazers_count": 2,
+    "forks_count": 0,
+    "topics": [
+      "docker",
+      "docker-compose",
+      "mern-stack",
+      "mongodb-atlas",
+      "nodejs",
+      "reactjs",
+      "typescript"
+    ],
+    "created_at": "2025-07-19T17:42:22Z",
+    "updated_at": "2025-12-21T17:14:40Z",
     "fork": false
   },
   {
@@ -23,7 +175,7 @@
     "html_url": "https://github.com/Mouadbouanani/SkillMatching",
     "homepage": "",
     "language": "Not specified",
-    "stargazers_count": 0,
+    "stargazers_count": 1,
     "forks_count": 0,
     "topics": [
       "api-gateway",
@@ -36,7 +188,7 @@
       "sprringboot"
     ],
     "created_at": "2025-11-24T20:05:25Z",
-    "updated_at": "2025-12-17T14:51:04Z",
+    "updated_at": "2025-12-21T17:14:39Z",
     "fork": false
   },
   {
@@ -46,7 +198,7 @@
     "html_url": "https://github.com/Mouadbouanani/CollabSpace",
     "homepage": "",
     "language": "Not specified",
-    "stargazers_count": 0,
+    "stargazers_count": 1,
     "forks_count": 0,
     "topics": [
       "angular",
@@ -59,176 +211,24 @@
       "spring-boot"
     ],
     "created_at": "2025-11-29T19:50:01Z",
-    "updated_at": "2025-12-08T11:06:45Z",
+    "updated_at": "2025-12-21T17:14:38Z",
     "fork": false
   },
   {
-    "id": 1084193492,
-    "name": "Westher-O2-app",
-    "description": "The Weather O2 application follows a well-designed microservices architecture with a clear separation of concerns",
-    "html_url": "https://github.com/Mouadbouanani/Westher-O2-app",
-    "homepage": null,
-    "language": "Not specified",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [],
-    "created_at": "2025-10-27T10:57:33Z",
-    "updated_at": "2025-10-27T10:57:37Z",
-    "fork": false
-  },
-  {
-    "id": 983712143,
-    "name": "taawoniyat",
-    "description": "Taawoniyate est une plateforme web et mobile permettant la vente et l'achat de produits naturels, mettant en relation plusieurs vendeurs et clients",
-    "html_url": "https://github.com/Mouadbouanani/taawoniyat",
-    "homepage": "",
+    "id": 1071785782,
+    "name": "Portfolio",
+    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
+    "html_url": "https://github.com/Mouadbouanani/Portfolio",
+    "homepage": "https://mouadbouanani.github.io/Portfolio/",
     "language": "TypeScript",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "api",
-      "react-native",
-      "spring-boot"
-    ],
-    "created_at": "2025-05-14T19:52:27Z",
-    "updated_at": "2025-10-27T09:08:15Z",
-    "fork": false
-  },
-  {
-    "id": 1069869299,
-    "name": "Mouadbouanani",
-    "description": "README Profile",
-    "html_url": "https://github.com/Mouadbouanani/Mouadbouanani",
-    "homepage": "",
-    "language": "Not specified",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "readme-profile"
-    ],
-    "created_at": "2025-10-04T19:30:30Z",
-    "updated_at": "2025-10-22T18:21:26Z",
-    "fork": false
-  },
-  {
-    "id": 1022729255,
-    "name": "Gestion_Astreinte",
-    "description": "Developed a web application for managing weekend/holiday on-call duties using MERN stack with Docker deployment, automatic escalation system, and JWT authentication.",
-    "html_url": "https://github.com/Mouadbouanani/Gestion_Astreinte",
-    "homepage": "",
-    "language": "Not specified",
     "stargazers_count": 1,
     "forks_count": 0,
     "topics": [
-      "docker",
-      "docker-compose",
-      "mern-stack",
-      "mongodb-atlas",
-      "nodejs",
-      "reactjs",
-      "typescript"
+      "portfolio",
+      "reactjs"
     ],
-    "created_at": "2025-07-19T17:42:22Z",
-    "updated_at": "2025-10-20T10:33:51Z",
+    "created_at": "2025-10-07T20:08:52Z",
+    "updated_at": "2025-12-21T17:14:37Z",
     "fork": false
-  },
-  {
-    "id": 1079477053,
-    "name": "Mouadbouanani.github.io",
-    "description": "No description provided",
-    "html_url": "https://github.com/Mouadbouanani/Mouadbouanani.github.io",
-    "homepage": null,
-    "language": "Not specified",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [],
-    "created_at": "2025-10-19T22:00:51Z",
-    "updated_at": "2025-10-19T22:00:56Z",
-    "fork": false
-  },
-  {
-    "id": 964808118,
-    "name": "e-ecommerce",
-    "description": "This is a full-stack e-commerce website developed using Spring Boot for the backend and Angular for the frontend. The system is designed to handle multiple user roles, including Client, Supplier, and Administrator, each with tailored access and functionalities.",
-    "html_url": "https://github.com/Mouadbouanani/e-ecommerce",
-    "homepage": "",
-    "language": "Java",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "angular",
-      "java",
-      "spring-boot"
-    ],
-    "created_at": "2025-04-11T20:26:32Z",
-    "updated_at": "2025-10-14T15:44:47Z",
-    "fork": false
-  },
-  {
-    "id": 968833517,
-    "name": "Employee-Management-System",
-    "description": "Le Système de Gestion des Employés est une application web destinée à gérer les données des employés via des opérations CRUD complètes. Elle repose sur le framework Spring Boot et suit une architecture en trois couches.",
-    "html_url": "https://github.com/Mouadbouanani/Employee-Management-System",
-    "homepage": "",
-    "language": "HTML",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "bootstrap5",
-      "java",
-      "spring-boot"
-    ],
-    "created_at": "2025-04-18T20:24:48Z",
-    "updated_at": "2025-10-14T15:43:43Z",
-    "fork": false
-  },
-  {
-    "id": 972112397,
-    "name": "Gestion-Patisserie",
-    "description": "Gestion Patisserie is a JavaFX-based application designed to help bakeries and pastry shops manage their inventory, orders, clients, and employees.",
-    "html_url": "https://github.com/Mouadbouanani/Gestion-Patisserie",
-    "homepage": "",
-    "language": "Java",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "java",
-      "javafx",
-      "spring-boot"
-    ],
-    "created_at": "2025-04-24T14:54:06Z",
-    "updated_at": "2025-10-14T15:41:36Z",
-    "fork": false
-  },
-  {
-    "id": 740613856,
-    "name": "Taquin-Game",
-    "description": "No description provided",
-    "html_url": "https://github.com/Mouadbouanani/Taquin-Game",
-    "homepage": "",
-    "language": "C",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [
-      "c",
-      "sdl2"
-    ],
-    "created_at": "2024-01-08T17:47:54Z",
-    "updated_at": "2025-10-14T15:33:36Z",
-    "fork": false
-  },
-  {
-    "id": 864288973,
-    "name": "JCMP-ESI",
-    "description": "website to present JCMP-ESI club to the world and discover their activities and engagement in the society",
-    "html_url": "https://github.com/Mouadbouanani/JCMP-ESI",
-    "homepage": null,
-    "language": "Not specified",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [],
-    "created_at": "2024-09-27T21:32:41Z",
-    "updated_at": "2024-10-20T18:37:55Z",
-    "fork": true
   }
 ]
