@@ -1,5 +1,19 @@
 [
   {
+    "id": 1124142346,
+    "name": "octicode-fullstack-challenge",
+    "description": "This repository contains a comprehensive fullstack development challenge focused on building a clinical voice notes platform with AI capabilities. The challenge encompasses multiple aspects of modern software development including security, architecture, compliance, and API development",
+    "html_url": "https://github.com/Mouadbouanani/octicode-fullstack-challenge",
+    "homepage": "",
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "topics": [],
+    "created_at": "2025-12-28T12:31:31Z",
+    "updated_at": "2026-01-14T14:02:54Z",
+    "fork": false
+  },
+  {
     "id": 1071785782,
     "name": "Portfolio",
     "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
@@ -13,21 +27,7 @@
       "reactjs"
     ],
     "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2026-01-13T03:24:32Z",
-    "fork": false
-  },
-  {
-    "id": 1124142346,
-    "name": "octicode-fullstack-challenge",
-    "description": "No description provided",
-    "html_url": "https://github.com/Mouadbouanani/octicode-fullstack-challenge",
-    "homepage": null,
-    "language": "TypeScript",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "topics": [],
-    "created_at": "2025-12-28T12:31:31Z",
-    "updated_at": "2026-01-02T15:59:19Z",
+    "updated_at": "2026-01-14T03:43:04Z",
     "fork": false
   },
   {
