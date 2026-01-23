@@ -2,15 +2,22 @@
   {
     "id": 1138937423,
     "name": "Voting-system",
-    "description": "No description provided",
+    "description": "Design and develop a complete decentralized application (DApp) enabling secure, transparent and auditable digital voting within companies, by leveraging the advantages of Ethereum blockchain technology.",
     "html_url": "https://github.com/Mouadbouanani/Voting-system",
-    "homepage": null,
-    "language": "Not specified",
+    "homepage": "",
+    "language": "JavaScript",
     "stargazers_count": 0,
     "forks_count": 0,
-    "topics": [],
+    "topics": [
+      "ethereum",
+      "ganache",
+      "metamask",
+      "reactjs",
+      "solidity",
+      "truffle"
+    ],
     "created_at": "2026-01-21T10:01:21Z",
-    "updated_at": "2026-01-21T10:03:40Z",
+    "updated_at": "2026-01-22T15:21:41Z",
     "fork": false
   },
   {
@@ -27,7 +34,7 @@
       "reactjs"
     ],
     "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2026-01-21T03:39:36Z",
+    "updated_at": "2026-01-22T03:43:53Z",
     "fork": false
   },
   {
