@@ -250,7 +250,7 @@ const getSystemTheme = (): 'dark' | 'light' => {
 };
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>('dark');
   const [resolvedTheme, setResolvedTheme] = useState<'dark' | 'light'>(getSystemTheme());
 
   const getActualTheme = (currentTheme: Theme): 'dark' | 'light' => {
@@ -269,12 +269,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme') as Theme | null;
-    if (savedTheme) {
-      setThemeState(savedTheme);
-    }
-  }, []);
+
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
