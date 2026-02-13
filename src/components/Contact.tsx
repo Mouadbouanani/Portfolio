@@ -1,3 +1,4 @@
+import { useTheme } from "../contexts/ThemeContext";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
@@ -12,10 +13,12 @@ import {
   AlertCircle,
   Loader,
 } from "lucide-react";
+import ParticleBackground from "./ParticleBackground";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const Contact = () => {
+  const { currentTheme } = useTheme();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -80,12 +83,15 @@ const Contact = () => {
   return (
       <section
           id="contact"
-          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden"
+          className={`py-20 px-4 sm:px-6 lg:px-8 ${currentTheme.sectionBg} relative overflow-hidden`}
       >
         {/* Decorative background */}
+        <ParticleBackground />
+        <div className={`absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none`} />
+
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-10 w-96 h-96 bg-gradient-to-r from-primary to-secondary rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-gradient-to-r from-secondary to-primary rounded-full blur-3xl animate-pulse" />
+          <div className={`absolute top-1/4 left-10 w-96 h-96 bg-gradient-to-r ${currentTheme.blobPrimary} ${currentTheme.blobSecondary} rounded-full blur-3xl animate-pulse`} />
+          <div className={`absolute bottom-1/4 right-10 w-80 h-80 bg-gradient-to-r ${currentTheme.blobSecondary} ${currentTheme.blobPrimary} rounded-full blur-3xl animate-pulse`} />
         </div>
 
         <div className="max-w-7xl mx-auto relative">
@@ -97,10 +103,10 @@ const Contact = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-secondary to-primary bg-clip-text text-transparent">
+            <h2 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} bg-clip-text text-transparent`}>
               Get In Touch
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className={`text-lg md:text-xl ${currentTheme.textSecondary} max-w-3xl mx-auto leading-relaxed`}>
               Let's discuss opportunities, collaborations, or just have a chat
               about technology and innovation.
             </p>
@@ -116,7 +122,7 @@ const Contact = () => {
                 viewport={{ once: true }}
                 className="space-y-8"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-8 text-white">
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${currentTheme.textColor}`}>
                 Contact Information
               </h3>
 
@@ -124,20 +130,20 @@ const Contact = () => {
                 {contactInfo.map((info, index) => (
                     <motion.div
                         key={index}
-                        className="flex items-center space-x-4 p-4 bg-slate-800 bg-opacity-50 backdrop-blur-xl rounded-2xl border border-slate-700 hover:border-secondary transition-all duration-300"
+                        className={`flex items-center space-x-4 p-4 ${currentTheme.cardBg} bg-opacity-80 backdrop-blur-sm rounded-2xl border ${currentTheme.cardBorder} hover:${currentTheme.hoverColor} transition-all duration-300`}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
                     >
-                      <div className="text-secondary p-2 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg">
+                      <div className={`${currentTheme.secondary} p-2 ${currentTheme.primaryLight} rounded-lg`}>
                         {info.icon}
                       </div>
                       <div>
-                        <p className="text-gray-400 text-sm font-medium">
+                        <p className={`${currentTheme.textSecondary} text-sm font-medium`}>
                           {info.label}
                         </p>
-                        <p className="text-white font-semibold">{info.value}</p>
+                        <p className={`${currentTheme.textColor} font-semibold`}>{info.value}</p>
                       </div>
                     </motion.div>
                 ))}
@@ -145,7 +151,7 @@ const Contact = () => {
 
               {/* Social Links */}
               <div>
-                <h4 className="text-xl font-semibold text-white mb-6">
+                <h4 className={`text-xl font-semibold ${currentTheme.textColor} mb-6`}>
                   Connect with me
                 </h4>
                 <div className="flex space-x-4">
@@ -155,11 +161,11 @@ const Contact = () => {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group p-4 bg-slate-800 bg-opacity-50 backdrop-blur-xl rounded-2xl border border-slate-700 hover:border-secondary transition-all duration-300 text-gray-400 hover:text-secondary"
+                          className={`group p-4 ${currentTheme.cardBg} bg-opacity-80 backdrop-blur-sm rounded-2xl border ${currentTheme.cardBorder} hover:${currentTheme.hoverColor} transition-all duration-300 ${currentTheme.iconColor} hover:${currentTheme.hoverTextColor}`}
                           whileHover={{
                             scale: 1.1,
                             y: -5,
-                            boxShadow: "0 10px 25px rgba(20, 184, 166, 0.2)",
+                            boxShadow: currentTheme.cardShadow,
                           }}
                           title={social.label}
                       >
@@ -176,9 +182,9 @@ const Contact = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-slate-800 bg-opacity-50 backdrop-blur-xl p-8 rounded-2xl border border-slate-700 shadow-2xl"
+                className={`${currentTheme.cardBg} bg-opacity-80 backdrop-blur-sm p-8 rounded-2xl border ${currentTheme.cardBorder} ${currentTheme.cardShadowTailwind}`}
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">
+              <h3 className={`text-2xl font-bold mb-6 ${currentTheme.textColor}`}>
                 Send me a message
               </h3>
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -186,7 +192,7 @@ const Contact = () => {
                   <div>
                     <label
                         htmlFor="name"
-                        className="block text-sm font-medium text-gray-300 mb-2"
+                        className={`block text-sm font-medium ${currentTheme.textSecondary} mb-2`}
                     >
                       Name *
                     </label>
@@ -194,7 +200,7 @@ const Contact = () => {
                         type="text"
                         name="from_name"
                         id="name"
-                        className="w-full bg-slate-700 bg-opacity-50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+                        className={`w-full ${currentTheme.inputBg} border ${currentTheme.inputBorder} rounded-lg py-3 px-4 ${currentTheme.inputText} placeholder-gray-500 focus:outline-none focus:ring-2 ${currentTheme.inputFocus} focus:border-transparent`}
                         placeholder="Your Name"
                         required
                     />
@@ -203,7 +209,7 @@ const Contact = () => {
                   <div>
                     <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-gray-300 mb-2"
+                        className={`block text-sm font-medium ${currentTheme.textSecondary} mb-2`}
                     >
                       Email *
                     </label>
@@ -211,7 +217,7 @@ const Contact = () => {
                         type="email"
                         name="from_email"
                         id="email"
-                        className="w-full bg-slate-700 bg-opacity-50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+                        className={`w-full ${currentTheme.inputBg} border ${currentTheme.inputBorder} rounded-lg py-3 px-4 ${currentTheme.inputText} placeholder-gray-500 focus:outline-none focus:ring-2 ${currentTheme.inputFocus} focus:border-transparent`}
                         placeholder="your.email@example.com"
                         required
                     />
@@ -221,7 +227,7 @@ const Contact = () => {
                 <div>
                   <label
                       htmlFor="subject"
-                      className="block text-sm font-medium text-gray-300 mb-2"
+                      className={`block text-sm font-medium ${currentTheme.textSecondary} mb-2`}
                   >
                     Subject *
                   </label>
@@ -229,7 +235,7 @@ const Contact = () => {
                       type="text"
                       name="subject"
                       id="subject"
-                      className="w-full bg-slate-700 bg-opacity-50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+                      className={`w-full ${currentTheme.inputBg} border ${currentTheme.inputBorder} rounded-lg py-3 px-4 ${currentTheme.inputText} placeholder-gray-500 focus:outline-none focus:ring-2 ${currentTheme.inputFocus} focus:border-transparent`}
                       placeholder="What's this about?"
                       required
                   />
@@ -238,7 +244,7 @@ const Contact = () => {
                 <div>
                   <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-gray-300 mb-2"
+                      className={`block text-sm font-medium ${currentTheme.textSecondary} mb-2`}
                   >
                     Message *
                   </label>
@@ -246,7 +252,7 @@ const Contact = () => {
                       name="message"
                       id="message"
                       rows={5}
-                      className="w-full bg-slate-700 bg-opacity-50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent resize-none"
+                      className={`w-full ${currentTheme.inputBg} border ${currentTheme.inputBorder} rounded-lg py-3 px-4 ${currentTheme.inputText} placeholder-gray-500 focus:outline-none focus:ring-2 ${currentTheme.inputFocus} focus:border-transparent resize-none`}
                       placeholder="Tell me about your project, opportunity, or just say hello!"
                       required
                   />
@@ -255,7 +261,7 @@ const Contact = () => {
                 {/* Status Messages */}
                 {status === "success" && (
                     <motion.div
-                        className="flex items-center space-x-2 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300"
+                        className={`flex items-center space-x-2 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 ${currentTheme.textColor}`}
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
@@ -269,7 +275,7 @@ const Contact = () => {
 
                 {status === "error" && (
                     <motion.div
-                        className="flex items-center space-x-2 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300"
+                        className={`flex items-center space-x-2 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 ${currentTheme.textColor}`}
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
@@ -282,7 +288,7 @@ const Contact = () => {
                 <motion.button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-lg font-semibold hover:from-secondary hover:to-primary transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-2"
+                    className={`w-full bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} text-white px-6 py-3 rounded-lg font-semibold hover:${currentTheme.gradientTo} hover:${currentTheme.gradientFrom} transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-2`}
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                 >

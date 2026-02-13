@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr'
+import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
 import fs from 'fs'
 
@@ -7,6 +9,33 @@ import fs from 'fs'
 export default defineConfig({
   plugins: [
     react(),
+    svgr(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,ttf}'],
+      },
+      manifest: {
+        name: 'Mouad El Bouanani - Portfolio',
+        short_name: 'Mouad Portfolio',
+        description: 'Portfolio of Mouad El Bouanani, a Software Engineer and Full-Stack Developer',
+        theme_color: '#00C2FF',
+        background_color: '#0D1117',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'mouad-pwa-icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'mouad-pwa-icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
+    }),
     // Custom plugin to copy projects.json to dist
     {
       name: 'copy-projects-json',

@@ -1,9 +1,20 @@
+import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
 import { Award, ExternalLink, Calendar, Star } from 'lucide-react';
 import type { Transition } from 'framer-motion';
+    // import ParticleBackground from './ParticleBackground';
 
 // Updated certifications based on CV
 const certifications = [
+  {
+    name: 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
+    issuer: 'Oracle University',
+    date: '2025',
+    credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=599A9D3E464F443315BC3CD3E30DFC4BEE90879E00FEA5A2EE523BE3B15DFFAE',
+    skills: ['Cloud Concepts', 'OCI Services', 'Security & Identity', 'Billing & Cost Management', 'Governance'],
+    badge: '',
+    priority: 'high'
+  },
   {
     name: 'AWS Cloud Practitioner (CLF-C02)',
     issuer: 'DataCamp',
@@ -79,6 +90,7 @@ const academicAchievements = [
 ];
 
 const Certifications = () => {
+  const { currentTheme } = useTheme();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -118,11 +130,14 @@ const Certifications = () => {
   };
 
   return (
-      <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
+      <section id="certifications" className={`py-20 px-4 sm:px-6 lg:px-8 ${currentTheme.sectionBg} relative overflow-hidden`}>
         {/* Background decorations */}
+        {/*<div className="absolute inset-0 bg-[linear-gradient(rgba(29,205,159,0.05)_1px,transparent_1px)" />*/}
+
+
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-10 w-96 h-96 bg-gradient-to-r from-primary to-secondary rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-gradient-to-r from-secondary to-primary rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className={`absolute top-1/4 left-10 w-96 h-96 bg-gradient-to-r ${currentTheme.blobPrimary} ${currentTheme.blobSecondary} rounded-full blur-3xl animate-pulse`} />
+          <div className={`absolute bottom-1/4 right-10 w-80 h-80 bg-gradient-to-r ${currentTheme.blobSecondary} ${currentTheme.blobPrimary} rounded-full blur-3xl animate-pulse`} style={{ animationDelay: '2s' }} />
         </div>
 
         {/* Floating geometric shapes */}
@@ -131,7 +146,7 @@ const Certifications = () => {
               <motion.div
                   key={i}
                   className={`absolute opacity-10 ${
-                      i % 2 === 0 ? 'w-20 h-20 border-2 border-secondary' : 'w-16 h-16 bg-gradient-to-br from-primary to-secondary rotate-45'
+                      i % 2 === 0 ? `w-20 h-20 border-2 ${currentTheme.secondary}` : `w-16 h-16 bg-gradient-to-br ${currentTheme.gradientFrom} ${currentTheme.gradientTo} rotate-45`
                   }`}
                   style={{
                     left: `${Math.random() * 80 + 10}%`,
@@ -160,7 +175,7 @@ const Certifications = () => {
               className="text-center mb-16"
           >
             <motion.h2
-                className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-secondary to-primary bg-clip-text text-transparent"
+                className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} bg-clip-text text-transparent`}
                 whileInView={{
                   backgroundPosition: ["0% 50%", "100% 50%"],
                 }}
@@ -170,14 +185,14 @@ const Certifications = () => {
               Certifications & Achievements
             </motion.h2>
             <motion.div
-                className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"
+                className={`w-24 h-1 bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} mx-auto mb-8 rounded-full`}
                 initial={{ width: 0 }}
                 whileInView={{ width: 96 }}
                 transition={{ duration: 1, delay: 0.5 }}
                 viewport={{ once: true }}
             />
             <motion.p
-                className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                className={`text-lg md:text-xl ${currentTheme.textSecondary} max-w-3xl mx-auto leading-relaxed`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -196,7 +211,7 @@ const Certifications = () => {
               className="mb-20"
           >
             <motion.h3
-                className="text-2xl md:text-3xl font-bold text-center mb-12 text-white"
+                className={`text-2xl md:text-3xl font-bold text-center mb-12 ${currentTheme.textColor}`}
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6 }}
@@ -213,15 +228,15 @@ const Certifications = () => {
                       className="group relative"
                   >
                     <motion.div
-                        className={`h-full bg-slate-800 bg-opacity-50 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border transition-all duration-300 relative overflow-hidden ${
+                        className={`h-full ${currentTheme.cardBg} bg-opacity-80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border transition-all duration-300 relative overflow-hidden ${
                             cert.priority === 'high'
-                                ? 'border-secondary hover:border-primary'
-                                : 'border-slate-700 hover:border-secondary'
+                                ? `${currentTheme.border} hover:${currentTheme.hoverColor}`
+                                : `${currentTheme.cardBorder} hover:${currentTheme.hoverColor}`
                         }`}
                         whileHover={{
                           y: -10,
                           scale: 1.02,
-                          boxShadow: "0 20px 40px rgba(20, 184, 166, 0.15)"
+                          boxShadow: currentTheme.cardShadow
                         }}
                         animate={cert.priority === 'high' ? floatingAnimation : undefined}
                         whileTap={{ scale: 0.98 }}
@@ -230,7 +245,7 @@ const Certifications = () => {
                       {cert.priority === 'high' && (
                           <div className="absolute top-4 right-4">
                             <motion.div
-                                className="w-3 h-3 bg-gradient-to-r from-secondary to-primary rounded-full"
+                                className={`w-3 h-3 bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} rounded-full`}
                                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                                 transition={{ duration: 2, repeat: Infinity }}
                             />
@@ -238,7 +253,7 @@ const Certifications = () => {
                       )}
 
                       {/* Background glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${currentTheme.primaryLight} ${currentTheme.secondaryLight} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
                       <div className="relative z-10">
                         {/* Header with badge */}
@@ -251,7 +266,7 @@ const Certifications = () => {
                             {cert.badge}
                           </motion.div>
                           <motion.div
-                              className="p-2 bg-gradient-to-br from-primary to-secondary rounded-lg"
+                              className={`p-2 bg-gradient-to-br ${currentTheme.gradientFrom} ${currentTheme.gradientTo} rounded-lg`}
                               whileHover={{ rotate: 360, scale: 1.1 }}
                               transition={{ duration: 0.6 }}
                           >
@@ -260,29 +275,29 @@ const Certifications = () => {
                         </div>
 
                         {/* Content */}
-                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-secondary transition-colors leading-tight">
+                        <h3 className={`text-lg font-bold ${currentTheme.textColor} mb-2 ${currentTheme.hoverTextColor} transition-colors leading-tight`}>
                           {cert.name}
                         </h3>
-                        <p className="text-primary font-semibold mb-2">
+                        <p className={`${currentTheme.secondary} font-semibold mb-2`}>
                           {cert.issuer}
                         </p>
-                        <div className="flex items-center text-gray-400 text-sm mb-4">
-                          <Calendar className="w-4 h-4 mr-1" />
+                        <div className={`flex items-center ${currentTheme.textSecondary} text-sm mb-4`}>
+                          <Calendar className={`w-4 h-4 mr-1 ${currentTheme.iconColor}`} />
                           {cert.date}
                         </div>
 
                         {/* Skills */}
                         <div className="mb-6">
-                          <h4 className="text-sm font-semibold text-secondary mb-2">Skills Covered:</h4>
+                          <h4 className={`text-sm font-semibold ${currentTheme.secondary} mb-2`}>Skills Covered:</h4>
                           <div className="flex flex-wrap gap-2">
                             {cert.skills.map((skill, skillIndex) => (
                                 <motion.span
                                     key={skill}
-                                    className="px-2 py-1 bg-slate-700 bg-opacity-80 text-gray-300 text-xs rounded-full border border-slate-600"
+                                    className={`px-2 py-1 ${currentTheme.skillBg} ${currentTheme.skillText} text-xs rounded-full border ${currentTheme.skillBorder}`}
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
-                                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(20, 184, 166, 0.2)' }}
+                                    whileHover={{ scale: 1.05, backgroundColor: currentTheme.skillHoverBg }}
                                     viewport={{ once: true }}
                                 >
                                   {skill}
@@ -296,7 +311,7 @@ const Certifications = () => {
                             href={cert.credentialUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white text-sm rounded-full hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg"
+                            className={`inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r ${currentTheme.gradientFrom} ${currentTheme.gradientTo} text-white text-sm rounded-full hover:from-blue-700 hover:to-blue-500 transition-all duration-300 shadow-md`}
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -318,7 +333,7 @@ const Certifications = () => {
               viewport={{ once: true }}
           >
             <motion.h3
-                className="text-2xl md:text-3xl font-bold text-center mb-12 text-white"
+                className={`text-2xl md:text-3xl font-bold text-center mb-12 ${currentTheme.textColor}`}
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6 }}
@@ -341,39 +356,39 @@ const Certifications = () => {
                       className="group"
                   >
                     <motion.div
-                        className="bg-slate-800 bg-opacity-50 backdrop-blur-xl p-6 rounded-2xl border border-slate-700 hover:border-secondary transition-all duration-300 shadow-2xl relative overflow-hidden"
+                        className={`${currentTheme.cardBg} bg-opacity-80 backdrop-blur-sm p-6 rounded-2xl border ${currentTheme.cardBorder} hover:${currentTheme.hoverColor} transition-all duration-300 shadow-lg relative overflow-hidden`}
                         whileHover={{
                           y: -5,
                           scale: 1.02,
-                          boxShadow: "0 15px 30px rgba(20, 184, 166, 0.1)"
+                          boxShadow: currentTheme.cardShadow,
                         }}
                     >
                       {/* Background glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${currentTheme.primaryLight} to-${currentTheme.secondaryLight} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
                       <div className="relative z-10">
                         <div className="flex items-start space-x-4 mb-4">
                           <motion.div
-                              className="p-3 bg-gradient-to-br from-primary to-secondary rounded-lg flex-shrink-0"
+                              className={`p-3 bg-gradient-to-br ${currentTheme.gradientFrom} ${currentTheme.gradientTo} rounded-lg flex-shrink-0`}
                               whileHover={{ rotate: 360, scale: 1.1 }}
                               transition={{ duration: 0.6 }}
                           >
                             {achievement.icon}
                           </motion.div>
                           <div className="flex-1">
-                            <h4 className="text-lg font-bold text-white mb-1 group-hover:text-secondary transition-colors">
+                            <h4 className={`text-lg font-bold ${currentTheme.textColor} mb-1 ${currentTheme.hoverTextColor} transition-colors`}>
                               {achievement.title}
                             </h4>
-                            <p className="text-primary font-semibold mb-1">
+                            <p className={`${currentTheme.secondary} font-semibold mb-1`}>
                               {achievement.institution}
                             </p>
-                            <div className="flex items-center text-gray-400 text-sm mb-3">
-                              <Calendar className="w-4 h-4 mr-1" />
+                            <div className={`flex items-center ${currentTheme.textSecondary} text-sm mb-3`}>
+                              <Calendar className={`w-4 h-4 mr-1 ${currentTheme.iconColor}`} />
                               {achievement.date}
                             </div>
                           </div>
                         </div>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className={`${currentTheme.textSecondary} text-sm leading-relaxed`}>
                           {achievement.description}
                         </p>
                       </div>
