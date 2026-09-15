@@ -1,5 +1,19 @@
 [
   {
+    "id": 1370492988,
+    "name": "AppFastAPI",
+    "description": "No description provided",
+    "html_url": "https://github.com/Mouadbouanani/AppFastAPI",
+    "homepage": null,
+    "language": "Not specified",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "topics": [],
+    "created_at": "2026-09-14T19:59:20Z",
+    "updated_at": "2026-09-14T19:59:25Z",
+    "fork": false
+  },
+  {
     "id": 1071785782,
     "name": "Portfolio",
     "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
@@ -13,7 +27,7 @@
       "reactjs"
     ],
     "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2026-09-13T07:05:10Z",
+    "updated_at": "2026-09-14T07:28:25Z",
     "fork": false
   },
   {
