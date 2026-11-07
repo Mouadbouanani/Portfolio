@@ -1,5 +1,22 @@
 [
   {
+    "id": 1071785782,
+    "name": "Portfolio",
+    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
+    "html_url": "https://github.com/Mouadbouanani/Portfolio",
+    "homepage": "https://mouadbouanani.github.io/Portfolio/",
+    "language": "TypeScript",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "topics": [
+      "portfolio",
+      "reactjs"
+    ],
+    "created_at": "2025-10-07T20:08:52Z",
+    "updated_at": "2026-11-06T08:51:54Z",
+    "fork": false
+  },
+  {
     "id": 1124142346,
     "name": "octicode-fullstack-challenge",
     "description": "This repository contains a comprehensive fullstack development challenge focused on building a clinical voice notes platform with AI capabilities. The challenge encompasses multiple aspects of modern software development including security, architecture, compliance, and API development",
@@ -32,23 +49,6 @@
     ],
     "created_at": "2026-01-21T10:01:21Z",
     "updated_at": "2026-11-05T15:25:33Z",
-    "fork": false
-  },
-  {
-    "id": 1071785782,
-    "name": "Portfolio",
-    "description": "This is the source code for my personal portfolio website, built with React, Vite, and Tailwind CSS.",
-    "html_url": "https://github.com/Mouadbouanani/Portfolio",
-    "homepage": "https://mouadbouanani.github.io/Portfolio/",
-    "language": "TypeScript",
-    "stargazers_count": 1,
-    "forks_count": 0,
-    "topics": [
-      "portfolio",
-      "reactjs"
-    ],
-    "created_at": "2025-10-07T20:08:52Z",
-    "updated_at": "2026-11-05T08:52:47Z",
     "fork": false
   },
   {
